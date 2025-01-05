@@ -25,7 +25,7 @@ By automating these processes, companies can save time, reduce errors, and impro
 ## Installation  
 1. Clone the repository:  
    ```bash  
-   git clone https://github.com/your-repo.git  
+   git clone https://github.com/nematollahsaeidi/RegistrationAttendanceSystem.git
    cd your-repo  
    ```  
 
@@ -93,4 +93,4 @@ Input:
 - Video file: `video.mp4`  
 
 Output:  
-- Uploaded file URLs and server responses from `Podspace`.  
+- Uploaded file URLs and server responses  
