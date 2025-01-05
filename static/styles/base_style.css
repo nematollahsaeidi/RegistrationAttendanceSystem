@@ -1,0 +1,40 @@
+
+h2 {text-align: center;}
+p {text-align: center;}
+
+table.center {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+table.center_fix_weight {
+  margin-left:auto;
+  margin-right:auto;
+  table-layout:fixed;
+  width: 800px;
+}
+
+table.center_fix_weight td { overflow: hidden; }
+
+
+form {
+width:auto;
+margin: 0 auto;}
+
+
+body,h1 {font-family: "Montserrat", sans-serif}
+img {margin-bottom: -7px}
+.w3-row-padding img {margin-bottom: 12px}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+  font-weight: bold;
+  font-size:20px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<title> Attendance</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/static/styles/base_style.css">
+<head>
+	<title>Web Application</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
+  <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">ABOUT</a>
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">CONTACT</a>
+</nav>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-content" style="max-width:1800px">
+
+<div class="w3-opacity">
+<span class="w3-button w3-xxlarge w3-white w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+<div class="w3-clear"></div>
+  <h1><b> attendance</b></h1>
+  <p><b>A demo made by  on industry for evaluation purposes only.</b></p>
+    <div class="w3-container w3-light-grey w3-padding-32 w3-padding-large" id="contact">
+    <div class="w3-content" style="max-width:1500px">
+      <form method="post" action="/register" enctype="multipart/form-data">
+          <div class="w3-section">
+                <label for="user_id">User ID</label><br>
+                <input type="number" name="user_id" id="user_id" min="0" required>
+          </div>
+            <div class="w3-section">
+                <label for="file1">Zip File</label><br>
+                <input type="file" name="file1" id="file1" autocomplete="off" class="w3-button w3-block w3-black w3-margin-bottom"
+                       accept=".zip" onchange="validateFileType_zip()">
+                <script type="text/javascript">
+                    function validateFileType_zip(){
+                        var fileName = document.getElementById("file1").value;
+                        var idxDot = fileName.lastIndexOf(".") + 1;
+                        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+                        if (extFile!="zip"){
+                            alert("Only Zip files are allowed!");
+                            location.reload(true);
+                        }
+                    }
+                </script>
+
+                <label for="file2">Video File</label><br>
+                <input type="file" name="file2" id="file2" autocomplete="off" class="w3-button w3-block w3-black w3-margin-bottom"
+                       accept=".MP4,.MP4V-ES,.MPV,.mkv,.MPEG" onchange="validateFileType_video()">
+                <script type="text/javascript">
+                    function validateFileType_video(){
+                        var fileName = document.getElementById("file2").value;
+                        var idxDot = fileName.lastIndexOf(".") + 1;
+                        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+                        var formats = ["mp4",".MP4V-ES",".MPV",".mkv",".MPEG"];
+                        if (true!=formats.includes(extFile)){
+                            alert("Only Video files are allowed!");
+                            location.reload(true);
+                        }
+                    }
+                </script>
+              </div>
+            <br><br>
+        <button class="w3-button w3-block w3-black w3-margin-bottom" type="submit" onclick="alert1()">submit</button>
+<!--            <i class="fa fa-search fa-2x"></i>-->
+      </form>
+        {% if flag %}
+            <p style="font-family: B Nazanin; font-weight: bold; font-size:25px;"> نتایج </p>
+            <p style="font-family: B Nazanin; font-weight: bold; color: red; font-size:15px;"> فرمت فایل باید از نوع zip یا video باشد </p>
+        {% elif uploaded_url %}
+<!--            {% set mess = 'your request was sent' %}-->
+<!--            <p style="font-weight: bold; font-size:25px;"> {{mess}} </p>-->
+            <p style="font-weight: bold; font-size:25px;"> نتایج </p>
+<!--            <p style="font-weight: bold; font-size:15px;"> {{output_message}} </p>-->
+<!--            <p style="font-weight: bold; font-size:15px;"> {{output_status}} </p>-->
+        {% if flag_zip %}
+        <p style="font-family: B Nazanin; font-weight: bold; font-size:25px;"> نتایج فایل زیپ ارسالی </p>
+            <table class="center_fix_weight">
+                <tr>
+                    <th>شناسه کاربر</th>
+                    <th>فایل</th>
+                    <th>پیام</th>
+                    <th>وضعیت</th>
+                </tr>
+                <tbody>
+                {% for row in output_message_zip %}
+                <tr>
+                    <td>{{user_id}}</td>
+                    <td>{{row['filename']}}</td>
+                    <td>{{row['message']}}</td>
+                    <td>{{row['status']}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        {% if flag_video %}
+            <p style="font-family: B Nazanin; font-weight: bold; font-size:25px;"> نتایج فایل ویدیو ارسالی </p>
+            <table class="center_fix_weight" width="700">
+                <tr>
+                    <th>شناسه کاربر</th>
+                    <th>پیام</th>
+                    <th>وضعیت</th>
+                </tr>
+                <tbody>
+                {% for row in output_message_video %}
+                <tr>
+                    <td>{{user_id}}</td>
+                    <td>{{row['message']}}</td>
+                    <td>{{row['status']}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+
+<script src="/static/scripts/base_scripts.js"></script>
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+    </div>
+  </div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-opacity w3-xlarge" style="margin-top:128px">
+<!--{#  <i class="fa fa-facebook-official w3-hover-opacity"></i>#}-->
+<!--{#  <i class="fa fa-instagram w3-hover-opacity"></i>#}-->
+<!--{#  <i class="fa fa-snapchat w3-hover-opacity"></i>#}-->
+<!--{#  <i class="fa fa-pinterest-p w3-hover-opacity"></i>#}-->
+<!--{#  <i class="fa fa-twitter w3-hover-opacity"></i>#}-->
+<!--{#  <i class="fa fa-linkedin w3-hover-opacity"></i>#}-->
+<!--{#  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>#}-->
+        <p class="w3-medium">Powered by</p>
+    <img src="https://avatars3.githubusercontent.com/u/25844347?s=280&v=4" alt="Avatar" class="w3-circle w3-margin-right" style="width:80px">
+    <img src="https://fanap.ir/images/fanap-logo.png" alt="Avatar" class="w3-circle w3-margin-right" style="width:80px">
+</footer>
+</body>
+</html>

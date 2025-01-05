@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<title> Attendance and Register</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/static/styles/base_style.css">
+<head>
+	<title>Web Application</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
+  <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">ABOUT</a>
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">CONTACT</a>
+</nav>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-content" style="max-width:1800px">
+
+<div class="w3-opacity">
+<span class="w3-button w3-xxlarge w3-white w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+<div class="w3-clear"></div>
+  <h1><b> Attendance and Register</b></h1>
+  <p><b>A demo made by  on industry for evaluation purposes only.</b></p>
+    <div class="w3-container w3-light-grey w3-padding-32 w3-padding-large" id="contact">
+    <div class="w3-content" style="max-width:1500px">
+      <form action="/register" enctype="multipart/form-data">
+          <button class="w3-button w3-block w3-black w3-margin-bottom" type="submit">Register</button>
+      </form>
+      <form action="/attendance" enctype="multipart/form-data">
+          <button class="w3-button w3-block w3-black w3-margin-bottom" type="submit">Attendance</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script src="/static/scripts/base_scripts.js"></script>
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+    </div>
+  </div>
+
+<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-opacity w3-xlarge" style="margin-top:128px">
+    <p class="w3-medium">Powered by</p>
+    <img src="https://avatars3.githubusercontent.com/u/25844347?s=280&v=4" alt="Avatar" class="w3-circle w3-margin-right" style="width:80px">
+    <img src="https://fanap.ir/images/fanap-logo.png" alt="Avatar" class="w3-circle w3-margin-right" style="width:80px">
+</footer>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<title> Attendance</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/static/styles/base_style.css">
+<head>
+	<title>Web Application</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
+  <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">ABOUT</a>
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">CONTACT</a>
+</nav>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-content" style="max-width:1800px">
+
+<div class="w3-opacity">
+<span class="w3-button w3-xxlarge w3-white w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+<div class="w3-clear"></div>
+  <h1><b> attendance</b></h1>
+  <p><b>A demo made by  on industry for evaluation purposes only.</b></p>
+    <div class="w3-container w3-light-grey w3-padding-32 w3-padding-large" id="contact">
+    <div class="w3-content" style="max-width:1500px">
+      <form method="post" action="/" enctype="multipart/form-data">
+            <div class="w3-section">
+                <label for="user_id">کاربر ID</label><br>
+                <input type="number" name="user_id" id="user_id" min="1" max="9999">
+              </div>
+            <div>
+                <div class="w3-section" id="block1"  style="float:left;">
+                  <label for="start_time">زمان شروع</label><br>
+                  <input type="time" name="start_time" id="start_time" value="01:00" required>
+                </div>
+                <div class="w3-section" id="block2"  style="float:right;">
+                  <label for="finish_time">زمان اتمام</label><br>
+                    <input type="time" name="finish_time" id="finish_time" value="22:00" required>
+                </div>
+            </div>
+            <br><br>
+            <div>
+              <div class="w3-section" id="block3" style="float:left;">
+                <label for="start_date">روز شروع</label><br>
+                  <input type="date" name="start_date" id="start_date" value={{str_date}} required>
+              </div>
+              <div class="w3-section" id="block4" style="float:right;">
+                <label for="finish_date">روز اتمام</label><br>
+                  <input type="date" name="finish_date" id="finish_date" value="{{fih_date}}" required>
+              </div>
+            </div>
+        <button class="w3-button w3-block w3-black w3-margin-bottom" type="submit">
+            <i class="fa fa-search fa-2x"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<!--  <script>$(document).ready( function() {-->
+<!--    var now = new Date();-->
+<!--    var today = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();-->
+<!--    $('#start_date').val(today);-->
+<!--});-->
+<!--</script>-->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript"  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script>
+$(document).ready(function(){
+    $('#table_content').dataTable();
+});
+</script>
+
+{% if flag %}
+    <p> نتایج </p>
+	<table class="w3-table w3-striped w3-bordered w3-centered w3-auto" id="table_content">
+      <thead>
+      <tr>
+        <th>کاربر ID</th>
+        <th>روز</th>
+          <th>زمان</th>
+        <th>تصویر</th>
+      </tr>
+      </thead>
+		<tbody>
+		{% for row in info_number %}
+			<tr>
+              <td>{{info_number[loop.index-1]}}</td>
+              <td>{{info_date[loop.index-1]}}</td>
+                <td>{{info_image_time[loop.index-1]}}</td>
+              <td>
+                <img src="/static/{{ location_images[loop.index-1] }}" onclick="onClick(this)" alt="{{url}}" width="700" height="500">
+<!--                  <img src="{{ url_for('static', filename=location_images[loop.index-1]) }}" onclick="onClick(this)" alt="{{url}}" width="250" height="250">-->
+              </td>
+			</tr>
+		{% endfor %}
+		</tbody>
+      <tfoot>
+        <tr>
+          <th>کاربر ID</th>
+          <th>روز</th>
+            <th>زمان</th>
+          <th>تصویر</th>
+        </tr>
+      </tfoot>
+	</table>
+  {% endif %}
+  </div>
+
+<script src="/static/scripts/base_scripts.js"></script>
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+    </div>
+  </div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-opacity w3-xlarge" style="margin-top:128px">
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+</body>
+</html>
+
+
+<!--		{% for row in info %}-->
+<!--			<tr>-->
+<!--              <td>{{row[0]}}</td>-->
+<!--              <td>{{row[1]}}</td>-->
+<!--              <td>-->
+<!--                <img src="{{ url_for('display_image', filename=row[2]) }}" onclick="onClick(this)" alt="{{url}}" width="250" height="250">-->
+<!--              </td>-->
+<!--			</tr>-->
+<!--		{% endfor %}-->
