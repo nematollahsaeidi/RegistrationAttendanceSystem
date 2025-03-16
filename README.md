@@ -9,6 +9,10 @@ This Flask-based application provides a robust platform for:
 
 ---
 
+![diagram_image1](https://github.com/nematollahsaeidi/RegistrationAttendanceSystem/blob/main/diagram_image1.png)
+
+![diagram_image2](https://github.com/nematollahsaeidi/RegistrationAttendanceSystem/blob/main/diagram_image2.PNG)
+
 ## Introduction  
 This application is designed to serve companies looking for an integrated platform for:  
 1. **Attendance Tracking**:  
