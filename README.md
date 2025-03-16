@@ -8,9 +8,9 @@ This Flask-based application provides a robust platform for:
 2. **Data Registration**: Upload and process `.zip` and video files for employee data registration.  
 
 ---
-
+## System Overview
 ![diagram_image1](https://github.com/nematollahsaeidi/RegistrationAttendanceSystem/blob/main/diagram_image1.png)
-
+## Sequence Diagram
 ![diagram_image2](https://github.com/nematollahsaeidi/RegistrationAttendanceSystem/blob/main/diagram_image2.PNG)
 
 ## Introduction  
