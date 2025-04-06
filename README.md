@@ -1,7 +1,7 @@
 
-# Attendance and Data Registration System 
+# Video surveillance-based attendance and register 
 
-An **Attendance and Data Registration System** is a digital solution designed to help companies efficiently manage and track employee attendance, work hours, and personal data. This system often integrates advanced features like biometric authentication, shift scheduling, data registration, and comprehensive reporting to streamline workforce management.  
+An **Video surveillance-based attendance and register** is a digital solution designed to help companies efficiently manage and track employee attendance, work hours, and personal data. This system often integrates advanced features like biometric authentication, shift scheduling, data registration, and comprehensive reporting to streamline workforce management.  
 
 This Flask-based application provides a robust platform for:  
 1. **Attendance Management**: Query and retrieve employee attendance records based on specified time intervals.  
